@@ -11,7 +11,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// MongoDB connection
 func mongoConn() {
+	// Create mongo client and connect
 	clientoptions := options.Client().ApplyURI("mongodb://127.0.0.1:27017")
 	client, err := mongo.Connect(context.TODO(), clientoptions)
 
@@ -19,6 +21,7 @@ func mongoConn() {
 		log.Fatal(err)
 	}
 
+	// Check a client can connect
 	err = client.Ping(context.TODO(), nil)
 
 	if err != nil {
@@ -26,9 +29,9 @@ func mongoConn() {
 	}
 
 	fmt.Println("Successfully, connected to mongo database")
-
 }
 
+// Retrieve data from API call
 func getMetrics() {
 	url := "http://aio-2521:8041/v1/metric/1823fb2e-b3b8-4aa4-b1bc-d154a8704cd6/measures"
 	token := "gAAAAABe1pvvNJfWYJXBf61Nhx6rM2Ag6L5uMmzkGmmrYKBbuKYA4YheRD7dWlnRr59zgzO6PuTN6CNfiT5FyyaaIkVAVX0koyBluoLkFziHZkGAq9qM4Hu4Iiv5ouM6THdj5x5bvvhBuR6pMgS4-J4GH3eoLn8PmXJgzD9XgMwJdBjO0SkkvDM"
@@ -37,6 +40,7 @@ func getMetrics() {
 		fmt.Printf("HTTP error %s\n", err)
 	} else {
 		req.Header.Add("x-auth-token", token)
+		// Client required for HTTP headers
 		res, err := http.DefaultClient.Do(req)
 		if err != nil {
 			fmt.Printf("HTTP error %s\n", err)
