@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
 
 func main() {
-	fmt.Println("Hello Test Test")
+	response, err := http.Get("http://aio-2521:8041/v1/metric/")
+	if err != nil {
+		fmt.Printf("The HTTP request failed %s\n", err)
+	} else {
+		data, _ := ioutil.ReadAll(response.Body)
+		fmt.Println(string(data))
+	}
 }
