@@ -7,15 +7,20 @@ import (
 )
 
 func main() {
-	url := "http://aio-2521:8041/v1/metric/"
+	url := "http://aio-2521:8041/v1/metric/1823fb2e-b3b8-4aa4-b1bc-d154a8704cd6/measures"
+	token := "gAAAAABe1nEOwXdKY1bQ7-cuoPkMjuqvTG8_8hI9trCMK-MLG7jQsssQPBjlwRwapevfdoWkVAdT7jsSuGbOY02mHRgS73QFfvYjool8YqRKPV04Jlj2Z6T8RJS84sPyWcnBwHU7qMBFAPaNzLbOsb2WBbFv992yEmzV06Fz1OuzykUof2N5qD0"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Printf("HTTP error %s\n", err)
 	} else {
-		req.Header.Add("x-auth-token", "gAAAAABe1laWSJy5aAjQZ5HgFCSapt1aOZAwDBAspPWTrb7SnzuK0AOOHUYqxSZFQd2VWIMWCrWYPUYGM-zLbvuXO30pq77nFPDbI4TFLFemwDao0fNLdCNQsSa52nPL5ZhyMwopArp0A3GS1mP0fHxNvo2Wle94kK5eRTafB_JkJ2ZcXHt8Pww")
-		res, _ := http.DefaultClient.Do(req)
-		data, _ := ioutil.ReadAll(res.Body)
-		fmt.Println(string(data))
+		req.Header.Add("x-auth-token", token)
+		res, err := http.DefaultClient.Do(req)
+		if err != nil {
+			fmt.Printf("HTTP error %s\n", err)
+		} else {
+			data, _ := ioutil.ReadAll(res.Body)
+			fmt.Println(string(data))
+		}
 	}
 
 }
