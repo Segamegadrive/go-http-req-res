@@ -11,6 +11,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+func main() {
+	mongoConn()
+	getMetrics()
+}
+
 // MongoDB connection
 func mongoConn() {
 	// Create mongo client and connect
@@ -34,7 +39,7 @@ func mongoConn() {
 // Retrieve data from API call
 func getMetrics() {
 	url := "http://aio-2521:8041/v1/metric/1823fb2e-b3b8-4aa4-b1bc-d154a8704cd6/measures"
-	token := "gAAAAABe1pvvNJfWYJXBf61Nhx6rM2Ag6L5uMmzkGmmrYKBbuKYA4YheRD7dWlnRr59zgzO6PuTN6CNfiT5FyyaaIkVAVX0koyBluoLkFziHZkGAq9qM4Hu4Iiv5ouM6THdj5x5bvvhBuR6pMgS4-J4GH3eoLn8PmXJgzD9XgMwJdBjO0SkkvDM"
+	token := "gAAAAABe15DEoiMVc4fs8CzXZf3ByFU6jsEzGz9czN-tF7l-pFZZL6oLalipctNVIO0Cl2bRYbJ19DOkRoGj3OQR72FHlv9lHLfoIdvvxQUdxTvIkfqPsE4HsrGt5ZYcMpTAIcXTHBffWcRiugl5CzNEmip7uyZbfUD8my3nFghxnEfiJi_lhNA"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Printf("HTTP error %s\n", err)
@@ -49,9 +54,4 @@ func getMetrics() {
 			fmt.Println(string(data))
 		}
 	}
-}
-
-func main() {
-	mongoConn()
-	getMetrics()
 }
