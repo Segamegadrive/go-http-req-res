@@ -38,8 +38,9 @@ func mongoConn() {
 
 // Retrieve data from API call
 func getMetrics() {
+
 	url := "http://aio-2521:8041/v1/metric/1823fb2e-b3b8-4aa4-b1bc-d154a8704cd6/measures"
-	token := "gAAAAABe15DEoiMVc4fs8CzXZf3ByFU6jsEzGz9czN-tF7l-pFZZL6oLalipctNVIO0Cl2bRYbJ19DOkRoGj3OQR72FHlv9lHLfoIdvvxQUdxTvIkfqPsE4HsrGt5ZYcMpTAIcXTHBffWcRiugl5CzNEmip7uyZbfUD8my3nFghxnEfiJi_lhNA"
+	token := "gAAAAABe2QL-gDs7h8y50GRB7_dv0lvS0nDPgCHvwgL3VyMV4av85u0MqDw1tm6QbH132Hpu-db97VQFcX7ly80WDJwerPY3XtILK_Hw1DFCgxrxhh4x8nggpIAHsdxdIxa7rmCVLqbgTnz2w3MedrC0P2NZGpnIZYBlmZIi5IbCPYsAkEQI0IQ"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Printf("HTTP error %s\n", err)
